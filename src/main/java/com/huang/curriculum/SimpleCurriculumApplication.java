@@ -1,4 +1,4 @@
-package com.huang.simple_curriculum.simple_curriculum;
+package com.huang.curriculum;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
