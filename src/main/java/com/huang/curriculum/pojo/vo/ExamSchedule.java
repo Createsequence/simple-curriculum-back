@@ -30,7 +30,4 @@ public class ExamSchedule{
 
     @ApiModelProperty("当前时间")
     private String date;
-
-    @ApiModelProperty("当前学期")
-    private String nowDate;
 }

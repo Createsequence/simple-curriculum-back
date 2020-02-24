@@ -2,18 +2,25 @@ package com.huang.curriculum.util;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.util.ResourceUtils;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 
 /**
  * @Author：黄成兴
  * @Date：2019-12-10 17:38
  * @Description：加密工具
  */
-public class EncryptionUtils {
+public final class EncryptionUtils {
+
+    public EncryptionUtils() {
+        throw new RuntimeException("工具类不允许实例化");
+    }
 
     /**
      * js方法接口
@@ -31,11 +38,11 @@ public class EncryptionUtils {
         // 创建一个脚本引擎管理器
         ScriptEngineManager manager = new ScriptEngineManager();
         // 获取一个指定的名称的脚本引擎
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("javascript");
         try {
             //获取resources文件
             Resource resource = new ClassPathResource("static/conwork.js");
-            // FileReader的参数为所要执行的js文件的路径（对空格进行处理）
+            //读取js并调用方法（路径bug，暂不可用）
             engine.eval(new FileReader(resource.getFile()));
             if (engine instanceof Invocable) {
                 Invocable invocable = (Invocable) engine;

@@ -21,7 +21,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
     @Bean
     public Docket adminApiConfig(){
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("huangApi")
                 .apiInfo(adminApiInfo())
@@ -31,7 +30,6 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo adminApiInfo(){
-
         return new ApiInfoBuilder()
                 .title("简单课程表-API文档")
                 .description("本文档描述了简单课程表系统的接口定义")
