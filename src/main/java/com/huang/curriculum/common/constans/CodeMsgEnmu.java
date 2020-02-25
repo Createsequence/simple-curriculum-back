@@ -24,7 +24,7 @@ public enum CodeMsgEnmu {
     /**
      * cookie过期错误
      */
-    COOKIE_EXPIRED_ERROR(new CodeMsg("error", 1003 , "cookie已过期!"));
+    COOKIE_EXPIRED_ERROR(new CodeMsg("error", 1003 , "cookie已过期，重新登录!"));
 
     private CodeMsg codeMsg;
 

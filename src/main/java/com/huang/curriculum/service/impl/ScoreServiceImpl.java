@@ -1,7 +1,9 @@
 package com.huang.curriculum.service.impl;
 
+import com.huang.curriculum.common.constans.CodeMsgEnmu;
 import com.huang.curriculum.common.constans.UrlEnum;
 import com.huang.curriculum.common.exception.UserLoginException;
+import com.huang.curriculum.component.CheckComponent;
 import com.huang.curriculum.pojo.vo.CourseScore;
 import com.huang.curriculum.service.ScoreService;
 import com.huang.curriculum.util.JsoupUtils;
@@ -28,19 +30,15 @@ public class ScoreServiceImpl implements ScoreService {
     public List<CourseScore> getScore(String jsessionId) {
         //添加cookie
         Map<String, String> cookie = new HashMap<>(2);
-        cookie.put("JSESSIONID", jsessionId);
+        cookie.put("JSESSIONID", CheckComponent.checkJessionId(jsessionId));
 
         //添加参数
         Map<String, String> params = new HashMap<>(2);
         params.put("xsfs", "all");
         //获取页面数据
         Document document = JsoupUtils.getJsoupDocument(UrlEnum.SCORE_URL.getUrl(), params, cookie);
-
-        //获取报错标签，如果存在则抛出错误
-        Element tipEle = document.select("form div.dlmi font").first();
-        if (tipEle != null || document.text().contains("请先登录系统")) {
-            throw new UserLoginException("请先登录系统！");
-        }
+        //检验是否报错
+        CheckComponent.checkResponse(document);
 
         //获取成绩数据
         Elements dataTable = document.select("#dataList tbody tr");

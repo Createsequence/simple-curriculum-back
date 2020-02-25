@@ -20,20 +20,20 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class SwaggerConfiguration {
     @Bean
-    public Docket adminApiConfig(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("huangApi")
-                .apiInfo(adminApiInfo())
+                .apiInfo(apiInfo())
                 .select()
-                .paths(Predicates.and(PathSelectors.regex("/.*")))
+                .apis(RequestHandlerSelectors.basePackage("com.huang.curriculum.controller"))
+                .paths(PathSelectors.any())
                 .build();
     }
 
-    private ApiInfo adminApiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("简单课程表-API文档")
-                .description("本文档描述了简单课程表系统的接口定义")
-                .version("1.0")
+                .title("Simple Curriculum APIs")
+                .description("这是一份关于简单课程表后台API的说明文档")
+                .version("1.0.0")
                 .build();
     }
 }

@@ -61,6 +61,12 @@ public class UserLoginServiceImpl implements UserLoginService {
             //登录成功，获取cookie
             Map<String, String> cookie = response.cookies();
             logger.info("登录成功！获取cookie:{}",cookie);
+
+            //获取用户名
+            Element userInfo = document.select(".wap .block1 .block1text").get(0);
+            String userName = userInfo.text().split(" ")[0].substring(3);
+            cookie.put("userName", userName);
+
             return cookie;
         }else {
             //登录失败，抛出异常

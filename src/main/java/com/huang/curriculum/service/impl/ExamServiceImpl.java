@@ -1,7 +1,9 @@
 package com.huang.curriculum.service.impl;
 
+import com.huang.curriculum.common.constans.CodeMsgEnmu;
 import com.huang.curriculum.common.constans.UrlEnum;
 import com.huang.curriculum.common.exception.UserLoginException;
+import com.huang.curriculum.component.CheckComponent;
 import com.huang.curriculum.pojo.vo.ExamSchedule;
 import com.huang.curriculum.service.ExamService;
 import com.huang.curriculum.util.JsoupUtils;
@@ -24,15 +26,13 @@ public class ExamServiceImpl implements ExamService {
     public List<ExamSchedule> getExamSchedule(String jsessionId) {
         //添加cookie
         Map<String, String> cookie = new HashMap<>(2);
-        cookie.put("JSESSIONID", jsessionId);
+        cookie.put("JSESSIONID", CheckComponent.checkJessionId(jsessionId));
 
         //获取当前学期
         Document document = JsoupUtils.getJsoupDocument(UrlEnum.NOW_DATE_URL.getUrl(), null, cookie);
-        //获取报错标签，如果存在则抛出错误
-        Element tipEle = document.select("form div.dlmi font").first();
-        if (tipEle != null || document.text().contains("请先登录系统")) {
-            throw new UserLoginException("请先登录系统！");
-        }
+        //检验是否报错
+        CheckComponent.checkResponse(document);
+
         //无错则解析获取当前学期
         String dateStr = document
                 .select("select#xnxqid option[selected]").first()
