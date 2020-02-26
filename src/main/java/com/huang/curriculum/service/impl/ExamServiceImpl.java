@@ -1,14 +1,11 @@
 package com.huang.curriculum.service.impl;
 
-import com.huang.curriculum.common.constans.CodeMsgEnmu;
 import com.huang.curriculum.common.constans.UrlEnum;
-import com.huang.curriculum.common.exception.UserLoginException;
 import com.huang.curriculum.component.CheckComponent;
 import com.huang.curriculum.pojo.vo.ExamSchedule;
 import com.huang.curriculum.service.ExamService;
 import com.huang.curriculum.util.JsoupUtils;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 

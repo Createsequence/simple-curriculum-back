@@ -1,8 +1,6 @@
 package com.huang.curriculum.service.impl;
 
-import com.huang.curriculum.common.constans.CodeMsgEnmu;
 import com.huang.curriculum.common.constans.UrlEnum;
-import com.huang.curriculum.common.exception.UserLoginException;
 import com.huang.curriculum.component.CheckComponent;
 import com.huang.curriculum.pojo.vo.CourseSchedule;
 import com.huang.curriculum.service.DailyScheduleService;
@@ -120,13 +118,29 @@ public class DailyScheduleServiceImpl implements DailyScheduleService {
      * @return
      */
     private CourseSchedule getCourse(String courseStr){
+        System.out.print(courseStr+"===========>");
+
         //组装课程对象
         String[] courseArr = courseStr.split(" ");
+        System.out.print(courseArr[2]+"===========>");
+        System.out.print(courseArr.length);
+
+        System.out.println();
+
         CourseSchedule courseSchedule = new CourseSchedule()
                 .setCourseName(courseArr[0])
                 .setCourseTeacher(courseArr[1])
-                .setCourseDate(courseArr[2])
-                .setCourseClassroom(courseArr[3]);
+                .setCourseDate(courseArr[2]);
+
+        //判断是否有教室
+        if (courseArr.length > 3){
+            //有教室就插入
+            courseSchedule.setCourseClassroom(courseArr[3]);
+        }else {
+            //没有就给默认值
+            courseSchedule.setCourseClassroom("暂无教室");
+        }
+
         return courseSchedule;
     }
 
