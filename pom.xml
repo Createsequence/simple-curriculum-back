@@ -14,6 +14,8 @@
     <name>simple_curriculum</name>
     <description>简单课程表后台</description>
 
+    <packaging>war</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -105,22 +107,17 @@
         </dependency>
 
         <!--使用自带的tomcat-->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.9</version>
-        </dependency>-->
 
     </dependencies>
 
     <build>
 
-        <finalName>simple_curriculum</finalName>
+        <finalName>curriculum</finalName>
 
         <plugins>
             <plugin>
