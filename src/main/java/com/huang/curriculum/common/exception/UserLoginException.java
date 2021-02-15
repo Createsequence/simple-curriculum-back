@@ -2,10 +2,10 @@ package com.huang.curriculum.common.exception;
 
 import com.huang.curriculum.common.result.CodeMsg;
 
-/**
- * @Author：黄成兴
- * @Date：2019-12-10 23:45
- * @Description：用户登录异常
+/***
+ * 用户登录异常
+ *
+ * @author Created by Createsequence on 2019-12-10 16:21
  */
 public class UserLoginException extends CurriculumException {
 

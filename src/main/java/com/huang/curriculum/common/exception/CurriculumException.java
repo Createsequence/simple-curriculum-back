@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @Author：黄成兴
- * @Date：2019-12-11 15:58
- * @Description：自定义异常，所有异常需继承此类
+/***
+ * 自定义异常，所有异常需继承此类
+ * @author Created by Createsequence on 2019-12-11 16:19
  */
 @Getter
 @Setter
@@ -18,7 +17,7 @@ public class CurriculumException extends RuntimeException{
     /**
      * 返回信息类
      */
-    private CodeMsg codeMsg;
+    private final CodeMsg codeMsg;
 
     /**
      * 接受错误信息

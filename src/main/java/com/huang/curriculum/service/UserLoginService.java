@@ -4,18 +4,20 @@ import com.huang.curriculum.pojo.dto.User;
 
 import java.util.Map;
 
-/**
- * @Author：黄成兴
- * @Date：2020-02-24 9:20
- * @Description：教务系统登录接口
+/***
+ * 教务系统登录接口
+ *
+ * @author Created by Createsequence on 2020-02-24 16:43
  */
 public interface UserLoginService {
 
-    /**
+    /***
      * 登录教务系统
+     *
      * @param user 用户学号密码
-     * @return 从教务系统获取的cookie
+     * @return java.util.List<com.huang.curriculum.pojo.vo.ExamSchedule> 从教务系统获取的cookie
+     * @author Created by Createsequence on 2020-02-24 16:43
      */
-    public Map<String, String> loginSystem(User user);
+    Map<String, String> loginSystem(User user);
 
 }

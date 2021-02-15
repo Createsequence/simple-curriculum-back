@@ -1,13 +1,16 @@
-package com.huang.curriculum.util;
+package com.huang.curriculum.common.util;
 
-/**
- * @Date：2019-09-10 18:40
- * @Description：常用类型转换工具
+import com.huang.curriculum.common.exception.CurriculumException;
+
+/***
+ * 常用类型转换工具类
+ *
+ * @author Created by Createsequence on 2019-09-10 16:37
  */
 public final class TypeConverterUtils {
 
     private TypeConverterUtils() {
-        throw new RuntimeException("工具类不允许实例化！");
+        throw new CurriculumException("工具类不允许实例化！");
     }
 
     //在这里设置当转换出错时返回的默认值

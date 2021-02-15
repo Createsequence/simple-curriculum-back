@@ -1,38 +1,38 @@
-package com.huang.curriculum.util;
+package com.huang.curriculum.common.util;
 
+import com.huang.curriculum.common.exception.CurriculumException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.util.ResourceUtils;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-import java.io.File;
 import java.io.FileReader;
-import java.io.InputStream;
 
-/**
- * @Author：黄成兴
- * @Date：2019-12-10 17:38
- * @Description：加密工具
+/***
+ * 加密工具类
+ *
+ * @author Created by Createsequence on 2019-12-10 16:18
  */
 public final class EncryptionUtils {
 
     public EncryptionUtils() {
-        throw new RuntimeException("工具类不允许实例化");
+        throw new CurriculumException("工具类不允许实例化");
     }
 
     /**
      * js方法接口
      */
     public interface Method{
-        public String encodeInp(String input);
+        String encodeInp(String input);
     }
 
-    /**
-     *  Java执行JavaScript脚本破解加密算法
-     * @param str
-     * @return 加密后的字符串
+    /***
+     * JavaScript脚本破解加密算法
+     *
+     * @param str 账号密码字符串
+     * @return java.lang.String
+     * @author Created by Createsequence on 2019-12-10 16:18
      */
     public static String encryptionJs(String str) {
         // 创建一个脚本引擎管理器

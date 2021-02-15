@@ -9,10 +9,10 @@ import lombok.experimental.Accessors;
 
 import java.util.List;
 
-/**
- * @Author：黄成兴
- * @Date：2019-12-10 21:04
- * @Description：课程表实体类
+/***
+ * 课程表实体类
+ *
+ * @author Created by Createsequence on 2019-12-10 16:40
  */
 @ApiModel("课程表实体类")
 @Accessors(chain = true)

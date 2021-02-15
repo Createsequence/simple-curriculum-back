@@ -4,10 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-/**
- * @Author：黄成兴
- * @Date：2019-12-10 17:09
- * @Description：登录用户实体类
+/***
+ * 登录用户实体类
+ *
+ * @author Created by Createsequence on 2019-12-10 16:40
  */
 @Accessors(chain = true)
 @Getter

@@ -2,10 +2,10 @@ package com.huang.curriculum.common.constans;
 
 import lombok.Getter;
 
-/**
- * @Author：黄成兴
- * @Date：2019-12-11 15:47
- * @Description：url枚举类
+/***
+ * url枚举类
+ *
+ * @author Created by Createsequence on 2019-12-11 16:21
  */
 @Getter
 public enum UrlEnum {
@@ -38,7 +38,7 @@ public enum UrlEnum {
 
     private String url;
 
-    private UrlEnum(String url) {
+    UrlEnum(String url) {
         this.url = url;
     }
 

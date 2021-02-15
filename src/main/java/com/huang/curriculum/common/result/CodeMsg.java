@@ -1,11 +1,14 @@
 package com.huang.curriculum.common.result;
 
+import com.huang.curriculum.common.constans.Constans;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
+/***
  * 响应类
+ *
+ * @author Created by Createsequence on 2021/2/15 16:46
  */
 @Getter
 @Setter
@@ -24,10 +27,16 @@ public class CodeMsg {
      * 信息
      */
     private String msg;
-
-    //通用
-    public static CodeMsg SUCCESS = new CodeMsg("success", 1 , "请求成功");
-    public static CodeMsg ERROR = new CodeMsg("error" ,0, "请求失败");
+    
+    /**
+     * 请求成功
+     */
+    public static final CodeMsg SUCCESS = new CodeMsg(Constans.SUCCESS, 1 , "请求成功");
+    
+    /**
+     * 请求失败
+     */
+    public static final CodeMsg ERROR = new CodeMsg(Constans.ERROR ,0, "请求失败");
 
     public CodeMsg(String status, int code, String msg) {
         this.status = status;

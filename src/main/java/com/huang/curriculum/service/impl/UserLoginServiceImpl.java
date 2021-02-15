@@ -1,31 +1,30 @@
 package com.huang.curriculum.service.impl;
 
+import com.huang.curriculum.common.constans.Constans;
 import com.huang.curriculum.common.constans.UrlEnum;
 import com.huang.curriculum.common.exception.UserLoginException;
 import com.huang.curriculum.pojo.dto.User;
 import com.huang.curriculum.service.UserLoginService;
-import com.huang.curriculum.util.EncryptionUtils;
-import com.huang.curriculum.util.JsoupUtils;
+import com.huang.curriculum.common.util.EncryptionUtils;
+import com.huang.curriculum.common.util.JsoupUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Author：黄成兴
- * @Date：2020-02-24 9:23
- * @Description：教务系统登录接口实现类
+/***
+ * 教务系统登录接口实现类
+ *
+ * @author Created by Createsequence on 2020-02-24 9:23
  */
+@Slf4j
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
-
-    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Map<String, String> loginSystem(User user) {
@@ -34,7 +33,7 @@ public class UserLoginServiceImpl implements UserLoginService {
         String userPassword = user.getUserPassword();
         //合成验证码
         String encoded = EncryptionUtils.encryptionJs(userAccount) + "%%%" + EncryptionUtils.encryptionJs(userPassword);
-        if (encoded.contains("IA==") || encoded.contains("null")){
+        if (encoded.contains(Constans.EMPTY_ENCODED_KEY) || encoded.contains(Constans.NULL)){
             throw new UserLoginException("用户名或密码不能为空！");
         }
 
@@ -44,8 +43,8 @@ public class UserLoginServiceImpl implements UserLoginService {
         loginDate.put("userPassword", userPassword);
         loginDate.put("encoded", encoded);
 
-        logger.info("userAccount：{}，userPassword：{}",userAccount, userPassword);
-        logger.info("合成验证码：{}", encoded);
+        log.info("userAccount：{}，userPassword：{}",userAccount, userPassword);
+        log.info("合成验证码：{}", encoded);
 
         //执行请求并获取响应信息
         String url = UrlEnum.LOGIN_URL.getUrl();
@@ -60,7 +59,7 @@ public class UserLoginServiceImpl implements UserLoginService {
         if (tipEle == null){
             //登录成功，获取cookie
             Map<String, String> cookie = response.cookies();
-            logger.info("登录成功！获取cookie:{}",cookie);
+            log.info("登录成功！获取cookie:{}",cookie);
 
             //获取用户名
             Element userInfo = document.select(".wap .block1 .block1text").get(0);
@@ -70,7 +69,7 @@ public class UserLoginServiceImpl implements UserLoginService {
             return cookie;
         }else {
             //登录失败，抛出异常
-            logger.info("登录失败");
+            log.info("登录失败");
             throw new UserLoginException(tipEle.text());
         }
     }

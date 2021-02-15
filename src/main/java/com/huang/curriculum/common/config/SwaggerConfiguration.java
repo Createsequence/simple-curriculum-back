@@ -1,6 +1,5 @@
-package com.huang.curriculum.config;
+package com.huang.curriculum.common.config;
 
-import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -11,10 +10,10 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * @Author：黄成兴
- * @Date：2020-02-23 13:22
- * @Description：<描述>
+/***
+ * swagger2配置类
+ *
+ * @author Created by Createsequence on 2020-02-23 16:22
  */
 @EnableSwagger2
 @Configuration

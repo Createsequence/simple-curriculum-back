@@ -7,10 +7,10 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-/**
- * @Author：黄成兴
- * @Date：2019-12-11 12:38
- * @Description：考试安排实体类
+/***
+ * 考试安排实体类
+ *
+ * @author Created by Createsequence on 2019-12-11 12:38
  */
 @ApiModel("考试安排实体类")
 @Accessors(chain = true)

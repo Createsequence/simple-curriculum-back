@@ -1,20 +1,21 @@
 package com.huang.curriculum.service.impl;
 
+import com.huang.curriculum.common.constans.Constans;
 import com.huang.curriculum.common.constans.UrlEnum;
-import com.huang.curriculum.component.CheckComponent;
+import com.huang.curriculum.common.util.CheckUtils;
 import com.huang.curriculum.pojo.vo.ExamSchedule;
 import com.huang.curriculum.service.ExamService;
-import com.huang.curriculum.util.JsoupUtils;
+import com.huang.curriculum.common.util.JsoupUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-/**
- * @Author：黄成兴
- * @Date：2020-02-24 13:40
- * @Description：考试安排获取接口实现类
+/***
+ * 考试安排获取接口实现类
+ *
+ * @author Created by Createsequence on 2020-02-24 13:40
  */
 @Service
 public class ExamServiceImpl implements ExamService {
@@ -23,12 +24,12 @@ public class ExamServiceImpl implements ExamService {
     public List<ExamSchedule> getExamSchedule(String jsessionId) {
         //添加cookie
         Map<String, String> cookie = new HashMap<>(2);
-        cookie.put("JSESSIONID", CheckComponent.checkJessionId(jsessionId));
+        cookie.put("JSESSIONID", CheckUtils.checkJessionId(jsessionId));
 
         //获取当前学期
         Document document = JsoupUtils.getJsoupDocument(UrlEnum.NOW_DATE_URL.getUrl(), null, cookie);
         //检验是否报错
-        CheckComponent.checkResponse(document);
+        CheckUtils.checkResponse(document);
 
         //无错则解析获取当前学期
         String dateStr = document
@@ -48,7 +49,7 @@ public class ExamServiceImpl implements ExamService {
         //遍历集合,封装考试安排实体类集合
         List<ExamSchedule> examSchedules = new ArrayList<>(dateTable.size());
         //如果没有数据直接返回空集合
-        if (elementsList.size() < 5){
+        if (elementsList.size() < Constans.EMPTY_EXAM_NUM){
             return examSchedules;
         }
         for (Elements elements : elementsList) {
